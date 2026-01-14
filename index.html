@@ -33,6 +33,12 @@
             padding: 0;
         }
 
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
         body {
             font-family: 'Segoe UI', 'Roboto', system-ui, sans-serif;
             background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
@@ -42,8 +48,8 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 20px;
             text-align: center;
+            padding: 0;
         }
 
         .container {
@@ -54,8 +60,9 @@
             box-shadow: var(--shadow-heavy);
             border: 1px solid var(--border-light);
             max-width: 900px;
-            width: 100%;
+            width: 95%;
             position: relative;
+            margin: auto;
         }
 
         .container::before {
@@ -365,6 +372,17 @@
                 font-size: 1.2rem;
             }
         }
+
+        @media (max-height: 800px) {
+            .container { 
+                padding: 1.5rem;
+                margin: 10px auto;
+            }
+            h1 { font-size: 2.2rem; margin-bottom: 1rem; }
+            .timer-display { font-size: 5rem; min-height: 100px; }
+            .phase-indicator { font-size: 1.5rem; min-height: 60px; }
+            .controls { margin: 1.5rem 0; }
+        }
     </style>
 </head>
 <body>
@@ -404,7 +422,7 @@
         
         <div class="status-container">
             <div id="phaseIndicator" class="phase-indicator detenido">
-                <i class="fas fa-hourglass-start"></i> LISTO
+                <i class="fas fa-pause-circle"></i> DETENIDO
             </div>
             
             <div class="progress-container">
@@ -436,37 +454,17 @@
 
     <script>
         // ============================================
-        // 🔥 CONFIGURACIÓN FIREBASE (REEMPLAZA ESTO)
+        // 🔥 CONFIGURACIÓN FIREBASE
         // ============================================
-       // Import the functions you need from the SDKs you need
-
-import { initializeApp } from "firebase/app";
-
-// TODO: Add SDKs for Firebase products that you want to use
-
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-
-// Your web app's Firebase configuration
-
-const firebaseConfig = {
-
-  apiKey: "AIzaSyBYXblIyc9N5NqBCzL4R5d3AOwrwpy6NlA",
-
-  authDomain: "crono-clasificatoria.firebaseapp.com",
-
-  databaseURL: "https://crono-clasificatoria-default-rtdb.europe-west1.firebasedatabase.app",
-
-  projectId: "crono-clasificatoria",
-
-  storageBucket: "crono-clasificatoria.firebasestorage.app",
-
-  messagingSenderId: "913248573377",
-
-  appId: "1:913248573377:web:36b4d2ba5dccce08e08140"
-
-};
-
+        const firebaseConfig = {
+            apiKey: "AIzaSyBYXblIyc9N5NqBCzL4R5d3AOwrwpy6NlA",
+            authDomain: "crono-clasificatoria.firebaseapp.com",
+            databaseURL: "https://crono-clasificatoria-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "crono-clasificatoria",
+            storageBucket: "crono-clasificatoria.firebasestorage.app",
+            messagingSenderId: "913248573377",
+            appId: "1:913248573377:web:36b4d2ba5dccce08e08140"
+        };
 
         // Inicializar Firebase
         firebase.initializeApp(firebaseConfig);
